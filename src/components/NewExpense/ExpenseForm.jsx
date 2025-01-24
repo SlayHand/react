@@ -2,40 +2,36 @@ import { useState } from 'react'
 import './ExpenseForm.css'
 
 const ExpenseForm = (props) => {
-    const [userInput, setuserInput] = useState({
-        enteredTitle: '',
-        enteredPrice: '',
-        enteredDate: ''
-    })
-
-    console.log(userInput)
+    const [enteredTitle, setEnteredTitle] = useState('')
+    const [enteredPrice, setEnteredPrice] = useState('')
+    const [enteredDate, setEnteredDate] = useState('')
 
     const titleChangeHandler = (event) => {
-        setuserInput({
-            ...userInput,
-            enteredTitle: event.target.value
-    })
-    }
-    const priceChangeHandler = (event) => {
-        setuserInput({
-            ...userInput,
-            enteredPrice: event.target.value
-        })
-    
-    }
-    const dateChangeHandler = (event) => {
-        setuserInput({
-            ...userInput,
-            enteredDate: event.target.value
-        })
-  
+        setEnteredTitle(event.target.value)
     }
 
+    const priceChangeHandler = (event) => {
+        setEnteredPrice(event.target.value)
+    }
+
+    const dateChangeHandler = (event) => {
+        setEnteredDate(event.target.value)
+    }
+
+    const submitHandler = (event) => {
+        event.preventDefault()
+        const expenseData = {
+            title: enteredTitle,
+            price: enteredPrice,
+            date: new Date(enteredDate)
+        }
+        setEnteredTitle('')
+    }
     return (
-        <form>
+        <form onSubmit={submitHandler}>
             <div className='new-expense__controls'>
                 <label>Title</label>
-                <input type="text" onChange={titleChangeHandler}/>
+                <input type="text" onChange={titleChangeHandler} value={enteredTitle}/>
             </div>
             <div className='new-expense__control'>
             <label>Price</label>
