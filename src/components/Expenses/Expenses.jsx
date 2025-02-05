@@ -8,17 +8,17 @@ import ExpensesFilter from './ExpensesFilter.jsx'
 
 const Expenses = (props) => {
 
-  const [filteredYear, setFilteredYear] = useState('2024');
-
-  const filterChangeHandler = (selectedYear) => {
-        setFilteredYear(selectedYear);
-        console.log(`Your data in Expenses.jsx ${selectedYear}`);
+  const filterChangeHandler = (filteredYear) => {
+        console.log('Your data in Expenses.jsx' + filteredYear);
       }
   return (
     <Card className='expenses'>
-        <ExpensesFilter selectedYear={filteredYear} onChangeFilter={filterChangeHandler} />
-        <ExpenseItem data={props.expenses[0]}/>
-        <ExpenseItem data={props.expenses[1]}/>
+        <ExpensesFilter onChangeFilter={filterChangeHandler} />
+          {
+            props.expenses.map((expense) => {
+              return <ExpenseItem expenseData={expense} key={expense.id}/>
+            })
+          }
     </Card>
   )
 }
