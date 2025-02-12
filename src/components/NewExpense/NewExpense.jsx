@@ -19,7 +19,7 @@ const NewExpense = (props) => {
             id: Math.random().toString()
         };
         props.onAddExpense(expenseData);
-        setIsEditing(false);  // Vorm suletakse pärast andmete lisamist
+        setIsEditing(false);
     };
 
     return (
