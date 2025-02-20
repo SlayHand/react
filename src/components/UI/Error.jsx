@@ -8,13 +8,13 @@ import "./Error.css"
 
 const BackDrop = () => {
     return (
-        <div className="backdrop"/>
+        <div className="backdrop"></div>
     )
 }
 
 const ModalOverlay = (props) => {
     return (
-        <Card className="modal">
+        <Card className='modal'>
             <header className="header">
                 <h2>{props.title}</h2>
             </header>
@@ -32,17 +32,18 @@ const Error = (props) => {
     return (
         <Fragment>
             {ReactDOM.createPortal(
-                <BackDrop onConfirm={props.onConfirm} />,
+                <BackDrop
+                 onConfirm={props.onConfirm} />,
                 document.getElementById('backdrop-root')
             )}
             {ReactDOM.createPortal(
                 <ModalOverlay 
-                    title={props.title} 
-                    message={props.message} 
-                    onConfirm={props.onConfirm}
-                />,
+                title={props.title} 
+                message={props.message} 
+                onConfirm={props.onConfirm} />,
                 document.getElementById('overlay-root')
-            )}
+            )
+            }
         </Fragment>
     );
 }

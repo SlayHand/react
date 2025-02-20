@@ -4,15 +4,10 @@ import Error from '../UI/Error';
 
 const ExpenseForm = (props) => {
     const [error, setError] = useState(null)
-    console.log(error)
 
     const titleInputRef = useRef()
     const amountInputRef = useRef()
     const dateInputRef = useRef()
-
-    const errorHandler = () => {
-        setError(null)
-    }
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -43,16 +38,20 @@ const ExpenseForm = (props) => {
         dateInputRef.current.value = ''
     }
 
+        const errorHandler = () => {
+            setError(null)
+        }
+
     return (
         <Fragment>
-            {error && (
-                <Error
-                title={error.title}
-                message={error.message}
-                onConfirm={errorHandler}
-                />
-            )}
-            <div>
+            {error && 
+            <Error 
+            title={error.title}
+            message={error.message}
+            onConfirm={errorHandler}
+            />
+            }
+            {
         <form onSubmit={submitHandler}>
             <div className='new-expense__controls'>
                 <div className='new-expense__control'>
@@ -78,11 +77,10 @@ const ExpenseForm = (props) => {
                 </div>
             </div>
             <div className='new-expense__actions'>
-                <button type="button" onClick={props.onCancel}>Cancel</button>
-                <button type="submit">Add Expense</button>
+                <button type="submit">Add Expense</button> <button type="button" onClick={props.onCancel}>Cancel</button>
             </div>
         </form>
-        </div>
+            }
         </Fragment>
     );
 };
